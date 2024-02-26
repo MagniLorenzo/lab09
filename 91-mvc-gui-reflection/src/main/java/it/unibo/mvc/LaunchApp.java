@@ -4,11 +4,10 @@ import it.unibo.mvc.api.DrawNumberController;
 import it.unibo.mvc.api.DrawNumberView;
 import it.unibo.mvc.controller.DrawNumberControllerImpl;
 import it.unibo.mvc.model.DrawNumberImpl;
-import it.unibo.mvc.view.DrawNumberConsoleView;
-import it.unibo.mvc.view.DrawNumberSwingView;
 
 import java.lang.Class;
 import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 
 /**
  * Application entry-point.
@@ -32,7 +31,9 @@ public final class LaunchApp {
      * @throws IllegalAccessException    in case of reflection issues
      * @throws IllegalArgumentException  in case of reflection issues
      */
-    public static void main(final String... args) throws Exception {
+    public static void main(final String... args)
+            throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException,
+            InstantiationException, IllegalAccessException, IllegalArgumentException {
         final var model = new DrawNumberImpl();
         final DrawNumberController app = new DrawNumberControllerImpl(model);
         final Class<?> cVC = Class.forName(CONSOLE_VIEW_CLASS);
