@@ -10,11 +10,15 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -72,10 +76,27 @@ public class BadIOGUI {
         });
 
         read.addActionListener(new ActionListener() {
+            /* 
             @Override
             public void actionPerformed(final ActionEvent e) {
-                System.out.println("TEST!!");
+                try (final BufferedReader bReader = new BufferedReader(new FileReader(PATH));) {
+                    System.out.println(bReader.readLine());
+                } catch (IOException e1) {
+                    JOptionPane.showMessageDialog(frame, e1, "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }*/
+
+            @Override
+            public void actionPerformed(final ActionEvent e) {
+                try {
+                    final Path path = new File(PATH).toPath();
+                    final List<String> fileLines = Files.readAllLines(path);
+                    System.out.println(fileLines.get(0));
+                } catch (IOException e1) {
+                    JOptionPane.showMessageDialog(frame, e1, "Error", JOptionPane.ERROR_MESSAGE);
+                }
             }
+            
         });
     }
 
@@ -112,6 +133,6 @@ public class BadIOGUI {
      * @param args ignored
      */
     public static void main(final String... args) {
-       new BadIOGUI().display();
+        new BadIOGUI().display();
     }
 }
