@@ -19,7 +19,7 @@ import java.awt.Toolkit;
 public final class SimpleGUI {
 
     private static final String TITLE = "My first Java graphical interface";
-    private static final int PROPORTION = 5;
+    private static final int PROPORTION = 4;
     private final JFrame frame = new JFrame(TITLE);
     private final Controller controller = new Controller();
 
@@ -43,8 +43,11 @@ public final class SimpleGUI {
                 }
             }
         });
+        final Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
+        final int sw = (int) screen.getWidth();
+        final int sh = (int) screen.getHeight();
+        frame.setSize(sw / PROPORTION, sh / PROPORTION);
         frame.setLocationByPlatform(true);
-        frame.pack();
     }
 
     public void start() {
