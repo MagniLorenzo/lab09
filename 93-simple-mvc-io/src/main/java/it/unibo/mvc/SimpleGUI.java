@@ -26,7 +26,7 @@ public final class SimpleGUI {
     public SimpleGUI() {
         final JPanel canvas = new JPanel(new BorderLayout());
         final JTextArea textArea = new JTextArea();
-        final JButton saveButton = new JButton();
+        final JButton saveButton = new JButton("Save");
         canvas.add(textArea, BorderLayout.CENTER);
         canvas.add(saveButton, BorderLayout.SOUTH);
         frame.setContentPane(canvas);
