@@ -51,7 +51,7 @@ public final class SimpleGUI {
         this.frame.setVisible(true);
     }
 
-    public static void main(final String args) {
+    public static void main(final String[] args) {
         new SimpleGUI().start();
     }
 }
