@@ -37,9 +37,9 @@ public final class SimpleGUI {
                 try {
                     controller.saveOnFile(textArea.getText());
                 } catch (NullPointerException e1) {
-                    JOptionPane.showMessageDialog(frame, e1, "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(frame, e1.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                 } catch (IOException e2) {
-                    JOptionPane.showMessageDialog(frame, e2, "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(frame, e2.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
