@@ -6,12 +6,14 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.JFileChooser;
 import java.awt.Dimension;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.awt.Toolkit;
+import java.io.File;
 
 /**
  * A very simple program using a graphical interface.
@@ -20,7 +22,7 @@ import java.awt.Toolkit;
 public final class SimpleGUIWithFileChooser {
 
     private static final String TITLE = "My second Java graphical interface";
-    private static final int PROPORTION = 4;
+    private static final int PROPORTION = 3;
     private final JFrame frame = new JFrame(TITLE);
 
     private final Controller controller = new Controller();
@@ -49,6 +51,20 @@ public final class SimpleGUIWithFileChooser {
                     JOptionPane.showMessageDialog(frame, e1, "Error", JOptionPane.ERROR_MESSAGE);
                 } catch (IOException e2) {
                     JOptionPane.showMessageDialog(frame, e2, "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        });
+        browseButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(final ActionEvent e) {
+                final JFileChooser fileChooser = new JFileChooser();
+                int returnValue = fileChooser.showSaveDialog(frame);
+                if (returnValue == JFileChooser.APPROVE_OPTION) {
+                    final File newFile = fileChooser.getSelectedFile();
+                    controller.setFile(newFile);
+                    textField.setText(newFile.getPath());
+                } else if (returnValue == JFileChooser.ERROR_OPTION) {
+                    JOptionPane.showMessageDialog(frame, fileChooser, "Error", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
