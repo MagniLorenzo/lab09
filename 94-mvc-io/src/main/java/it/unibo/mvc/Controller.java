@@ -3,7 +3,7 @@ package it.unibo.mvc;
 import java.util.List;
 
 /**
- *
+ * This interface represents a Controller that can write String on Standard Output
  */
 public interface Controller {
 
