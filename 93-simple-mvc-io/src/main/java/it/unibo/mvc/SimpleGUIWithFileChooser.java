@@ -48,9 +48,9 @@ public final class SimpleGUIWithFileChooser {
                 try {
                     controller.saveOnFile(textArea.getText());
                 } catch (NullPointerException e1) {
-                    JOptionPane.showMessageDialog(frame, e1, "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(frame, e1.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                 } catch (IOException e2) {
-                    JOptionPane.showMessageDialog(frame, e2, "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(frame, e2.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
@@ -64,7 +64,7 @@ public final class SimpleGUIWithFileChooser {
                     controller.setFile(newFile);
                     textField.setText(newFile.getPath());
                 } else if (returnValue == JFileChooser.ERROR_OPTION) {
-                    JOptionPane.showMessageDialog(frame, fileChooser, "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(frame, returnValue, "Error", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
