@@ -5,12 +5,13 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-
+import java.awt.FlowLayout;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.Toolkit;
 import java.awt.Dimension;
+
 
 /**
  * A very simple program using a graphical interface.
@@ -25,7 +26,7 @@ public final class SimpleGUI {
         final JPanel panel = new JPanel(new BorderLayout());
         final JTextField textField = new JTextField();
         final JTextArea textArea = new JTextArea();
-        final JPanel panel2 = new JPanel(new BorderLayout());
+        final JPanel panel2 = new JPanel(new FlowLayout(FlowLayout.RIGHT));
         final JButton printButton = new JButton("Print");
         printButton.addActionListener(new ActionListener() {
             @Override
@@ -38,11 +39,12 @@ public final class SimpleGUI {
         historyButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(final ActionEvent e) {
-                textArea.setText(controller.getHistory().toString());
+                textArea.setText("");
+                controller.getHistory().forEach(x -> textArea.append(x + '\n'));
             }
         });
-        panel2.add(printButton, BorderLayout.CENTER);
-        panel2.add(historyButton, BorderLayout.LINE_END);
+        panel2.add(printButton);
+        panel2.add(historyButton);
         panel.add(textField, BorderLayout.NORTH);
         panel.add(textArea, BorderLayout.CENTER);
         panel.add(panel2, BorderLayout.SOUTH);
@@ -59,7 +61,7 @@ public final class SimpleGUI {
         this.frame.setVisible(true);
     }
 
-    public static void main(final String[] args){
+    public static void main(final String[] args) {
         final SimpleGUI simpleGUI = new SimpleGUI(new SimpleController());
         simpleGUI.start();
     }
